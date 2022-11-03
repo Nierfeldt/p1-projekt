@@ -1,0 +1,3 @@
+W,Værelse,55,10.00
+W,Bade Værelse,70,18.00
+W,Stue,40,20.20
