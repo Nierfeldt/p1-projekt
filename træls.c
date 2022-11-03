@@ -11,41 +11,43 @@ typedef struct
 
 int main(void)
 {
-  // file pointer variable for accessing the file
+  //file pointer variabel fil. 
   FILE *file;
   
   file = fopen("data.txt", "r"); 
   
-  // if the file failed to open, exit with an error message and status
+
+  //Til hvis filen ikke åbner, så kom med en fejl besked. 
   if (file == NULL)
   {
     printf("Error opening file.\n");
     return 1;
   }
   
-  // array of structs for storing the Student data from the file
+  // array af structs til at gemme data i
   Data Datas[100];
   
-  // read will be used to ensure each line/record is read correctly
+  // read bliver brugt til at være sikker på vær linje bliver læst ordenligt 
   int read = 0;
   
-  // records will keep track of the number of Student records read from the file
-  int records = 0;
+  // linjer holder øje med hvor mange linjer data, som der er i filen 
+  int linjer = 0;
 
-  // read all records from the file and store them into the students array
+ 
+  //læs alle linjer fra filen og sæt den ind i datas array 
   do 
   {
  
     read = fscanf(file,
                   "%c,%49[^,],%d,%lf\n",
-                  &Datas[records].Enhed, 
-                  Datas[records].rum, 
-                  &Datas[records].tal, 
-                  &Datas[records].tidspunkt); 
+                  &Datas[linjer].Enhed, 
+                  Datas[linjer].rum, 
+                  &Datas[linjer].tal, 
+                  &Datas[linjer].tidspunkt); 
     
-    // if fscanf read 4 values from the file then we've successfully read 
-    // in another record
-    if (read == 4) records++;
+    
+    //hvis fscanf læser 4 værdier fra filen, så er den succesfuld.
+    if (read == 4) linjer++;
     
     
     if (read != 4 && !feof(file))
@@ -62,14 +64,16 @@ int main(void)
 
   } while (!feof(file));
 
-  // close the file as we are done working with it
+  //luk filen, der er blevet brugt færdigt. 
   fclose(file);
   
-  // print out the number of records read
-  printf("\n%d records read.\n\n", records);
   
-  // print out each of the records that was read 
-  for (int i = 0; i < records; i++)
+  //printer nummeret af linjer læst ud. 
+  printf("\n%d linjer read.\n\n", linjer);
+  
+  
+  // print hver linje ud i konsolen
+  for (int i = 0; i < linjer; i++)
     printf("%c %s %d %.2f\n", 
            Datas[i].Enhed, 
            Datas[i].rum,
