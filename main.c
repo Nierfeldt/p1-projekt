@@ -9,6 +9,10 @@ typedef struct // Koekken,stue,bad,værelse,soveværelse.
   int sovevaerelse;
 } rum;
 
+rum data[100];
+
+int average(rum data[], int linjer);
+
 int main(void)
 {
   // opretter variablen fil, for at kunne læse data.
@@ -23,7 +27,7 @@ int main(void)
     return 1;
   }
   // array af structs til dataen.
-  rum data[100];
+   
 
   // bliver brugt til at tjekke om filen bliver læst ordenligt
   int read = 0;
@@ -69,6 +73,12 @@ int main(void)
     printf("\n");
   }
 
+
+  average(data, linjer);
+  return 0;
+}
+
+int average(rum data[], int linjer){
   float sum_bad = 0;
   float sum_koekken = 0;
   float sum_sovevaerelse = 0;
@@ -103,6 +113,6 @@ int main(void)
   printf("\nGennemsnit watt paa sovevaerelse brugt over %d antal dage er %lf\n", linjer, gennemsnit_sovevaerelse);
   printf("\nGennemsnit watt paa stue brugt over %d antal dage er %lf\n", linjer, gennemsnit_stue);
   printf("\nGennemsnit watt paa vaerelset brugt over %d antal dage er %lf\n", linjer, gennemsnit_vaerelse);
-
+  
   return 0;
 }
