@@ -2,11 +2,11 @@
 
 typedef struct // Koekken,stue,bad,værelse,soveværelse.
 {
-  int koekken;
-  int stue;
-  int bad;
-  int vaerelse;
-  int sovevaerelse;
+  float bad;
+  float koekken;
+  float sovevaerelse;
+  float stue;
+  float vaerelse;
 } rum;
 
 rum data[100];
@@ -37,7 +37,7 @@ int main(void)
   do // læs alle linjer af data og sæt dem ind i array af structs, som der passer til.
   {
     read = fscanf(file,
-                  "%d,%d,%d,%d,%d\n",
+                  "%f ,%f ,%f ,%f ,%f \n",
                   &data[linjer].bad,
                   &data[linjer].koekken,
                   &data[linjer].sovevaerelse,
@@ -64,7 +64,7 @@ int main(void)
   // print hver linje data ud i konsolen.
   for (int i = 0; i < linjer; i++)
   {
-    printf("%d %d %d %d %d",
+    printf("%lf %lf %lf %lf %lf",
            data[i].bad,
            data[i].koekken,
            data[i].sovevaerelse,
@@ -108,11 +108,11 @@ int average(rum data[], int linjer){
   gennemsnit_stue = sum_stue / linjer;
   gennemsnit_vaerelse = sum_vaerelse / linjer;
 
-  printf("\nGennemsnit watt paa bad brugt over %d antal dage er %lf\n", linjer, gennemsnit_af_bad);
-  printf("\nGennemsnit watt paa koekken brugt over %d antal dage er %lf\n", linjer, gennemsnit_koekken);
-  printf("\nGennemsnit watt paa sovevaerelse brugt over %d antal dage er %lf\n", linjer, gennemsnit_sovevaerelse);
-  printf("\nGennemsnit watt paa stue brugt over %d antal dage er %lf\n", linjer, gennemsnit_stue);
-  printf("\nGennemsnit watt paa vaerelset brugt over %d antal dage er %lf\n", linjer, gennemsnit_vaerelse);
+  printf("\nGennemsnit kW paa bad brugt over %d antal timer er %lfkW\n", linjer, gennemsnit_af_bad);
+  printf("\nGennemsnit kW paa koekken brugt over %d antal timer er %lfkW\n", linjer, gennemsnit_koekken);
+  printf("\nGennemsnit kW paa sovevaerelse brugt over %d antal timer er %lfkW\n", linjer, gennemsnit_sovevaerelse);
+  printf("\nGennemsnit kW paa stue brugt over %d antal timer er %lfkW\n", linjer, gennemsnit_stue);
+  printf("\nGennemsnit kW paa vaerelset brugt over %d antal timer er %lfkW\n", linjer, gennemsnit_vaerelse);
   
   return 0;
 }
