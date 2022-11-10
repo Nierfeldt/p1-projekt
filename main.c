@@ -9,9 +9,27 @@ typedef struct // Koekken,stue,bad,værelse,soveværelse.
   float vaerelse;
 } rum;
 
+typedef struct
+{
+  float dag_1;
+  float dag_2;
+  float dag_3;
+  float dag_4;
+  float dag_5;
+  float dag_6;
+  float dag_7;
+  float dag_8;
+  float dag_9;
+  float dag_10;
+  float dag_11;
+  float dag_12; 
+}carbon;
+
 rum data[100];
+carbon emission[300];
 
 int average(rum data[], int linjer);
+int c02();
 
 int main(void)
 {
@@ -114,5 +132,11 @@ int average(rum data[], int linjer){
   printf("\nGennemsnit kW paa stue brugt over %d antal timer er %lfkW\n", linjer, gennemsnit_stue);
   printf("\nGennemsnit kW paa vaerelset brugt over %d antal timer er %lfkW\n", linjer, gennemsnit_vaerelse);
   
+  return 0;
+}
+
+int c02(){
+  
+
   return 0;
 }
