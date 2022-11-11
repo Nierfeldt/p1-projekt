@@ -157,13 +157,6 @@ int main(void)
   printf("\nTidspunktet hvor der bliver udslippet mindst co2 paa dag 11 er kl: %d og udslippet er : %lf\n",location_11,emission[location_11].dag_11);
   printf("\nTidspunktet hvor der bliver udslippet mindst co2 paa dag 12 er kl: %d og udslippet er : %lf\n",location_12,emission[location_12].dag_12);
 
-
-
-
-
-
-
-
   return 0;
 }
 
