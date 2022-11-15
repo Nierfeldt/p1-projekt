@@ -20,7 +20,7 @@ int main(void)
   // opretter variablen fil, for at kunne læse data.
   FILE *file;
 
-  file = fopen("data.txt", "r");
+  file = fopen("data.csv", "r");
 
   // Kommer med besked hvis filen ikke åbner.
   if (file == NULL)

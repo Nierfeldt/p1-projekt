@@ -25,7 +25,7 @@ int main(void)
   // opretter variablen fil, for at kunne læse data.
   FILE *file;
 
-  file = fopen("co2udledning.txt", "r");
+  file = fopen("co2udledning.csv", "r");
 
   // Kommer med besked hvis filen ikke åbner.
   if (file == NULL)
