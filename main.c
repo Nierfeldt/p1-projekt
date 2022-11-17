@@ -9,7 +9,7 @@ typedef struct // Koekken,stue,bad,værelse,soveværelse.
   float vaerelse;
 } rum;
 
-
+// array af structs til dataen.
 rum data[100];
 
 
@@ -28,9 +28,7 @@ int main(void)
     printf("error opening file\n");
     return 1;
   }
-  // array af structs til dataen.
-   
-
+  
   // bliver brugt til at tjekke om filen bliver læst ordenligt
   int read = 0;
   // variablen skal bruges til at kigge på hvor mange linjer der er i programmet, som kan bruges i koden længere nede.
