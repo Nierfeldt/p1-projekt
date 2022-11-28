@@ -17,6 +17,7 @@ typedef struct // Koekken,stue,bad,værelse,soveværelse.
 rum data[200];
 
 int average(rum data[], int linjer);
+void reminder(float samlet_gns, float *valg_bolig_energi);
 
 
 int main(void){
@@ -174,8 +175,149 @@ int average(rum data[], int linjer){
   for (int i=0; i < NUM_COMMANDS; i++){
   fprintf(gnuplotPipe, "%s \n", commandsForGnuplot[i]); //Send commands to gnuplot one by one.
   }
+
   return 0;
 
+}
+
+void reminder(float samlet_gn, float *valg_bolig_energi){
+  int bolig_type = 0;
+  int bolig_stoerelse = 0;
+  int beboer = 0;
+  float valgt_bolig_energi = 0;
+
+  printf("Bor du i hus eller lejlighed? (1/2): ");
+  scanf("%d", &bolig_type);
+  printf("Hvor stor er din bolig? (1: 60-99 kvm / 2: 100-129 kvm / 3: 130-160 kvm): ");
+  scanf("%d", &bolig_stoerelse);
+  printf("Hvor mange personer bor i din bolig? (1/2/3/4/5): ");
+  scanf("%d", &beboer);
+
+  if (bolig_type == 1){
+    if (bolig_stoerelse == 1){
+      switch (beboer){
+      case 1:
+        valgt_bolig_energi = 5.980822;
+        break;
+      case 2:
+        valgt_bolig_energi = 8.030137;
+        break;
+      case 3:
+        valgt_bolig_energi = 10.079452;
+        break;
+      case 4:
+        valgt_bolig_energi = 12.128767;
+        break;
+      case 5:
+        valgt_bolig_energi = 14.178082;
+        break;
+      }
+    }else if (bolig_stoerelse == 2){
+      switch (beboer){
+      case 1:
+        valgt_bolig_energi = 7.084932;
+        break;
+      case 2:
+        valgt_bolig_energi = 9.134247;
+        break;
+      case 3:
+        valgt_bolig_energi = 11.183562;
+        break;
+      case 4:
+        valgt_bolig_energi = 13.232877;
+        break;
+      case 5:
+        valgt_bolig_energi = 15.282192;
+        break;
+      }
+    }else if (bolig_stoerelse == 3){
+      switch (beboer){
+      case 1:
+        valgt_bolig_energi = 8.030137;
+        break;
+      case 2:
+        valgt_bolig_energi = 10.079452;
+        break;
+      case 3:
+        valgt_bolig_energi = 12.128767;
+        break;
+      case 4:
+        valgt_bolig_energi = 14.178082;
+        break;
+      case 5:
+        valgt_bolig_energi = 16.227397;
+        break;
+      }
+    }
+    
+  }
+
+  if (bolig_type == 2){
+    if (bolig_stoerelse == 1){
+      switch (beboer){
+      case 1:
+        valgt_bolig_energi = 5.145205;
+        break;
+      case 2:
+        valgt_bolig_energi = 5.808219;
+        break;
+      case 3:
+        valgt_bolig_energi = 6.471233;
+        break;
+      case 4:
+        valgt_bolig_energi = 7.134246;
+        break;
+      case 5:
+        valgt_bolig_energi = 7.797260;
+        break;
+      }
+    }else if (bolig_stoerelse == 2){
+      switch (beboer){
+      case 1:
+        valgt_bolig_energi = 5.961644;
+        break;
+      case 2:
+        valgt_bolig_energi = 6.624658;
+        break;
+      case 3:
+        valgt_bolig_energi = 7.287671;
+        break;
+      case 4:
+        valgt_bolig_energi = 7.950685;
+        break;
+      case 5:
+        valgt_bolig_energi = 8.613698;
+        break;
+      }
+    }else if (bolig_stoerelse == 3){
+      switch (beboer){
+      case 1:
+        valgt_bolig_energi = 6.660274;
+        break;
+      case 2:
+        valgt_bolig_energi = 7.323288;
+        break;
+      case 3:
+        valgt_bolig_energi = 7.986301;
+        break;
+      case 4:
+        valgt_bolig_energi = 8.649315;
+        break;
+      case 5:
+        valgt_bolig_energi = 9.312329;
+        break;
+      }
+    }
+  }
+
+  if (valgt_bolig_energi < samlet_gns){
+    printf("\n\n***ADVARSEL***\n");
+    printf("Dit daglige stroemforbrug er over gennemsnittet for en tilsvarende husstand\n");
+    printf("Dit forbrug: %lf\nTilsvarende husstand: %lf\n", samlet_gns, valgt_bolig_energi);
+    printf("***ADVARSEL***\n");
+  }
+  
+  
 }
 
 
