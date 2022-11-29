@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 #define NUM_POINTS 24
-#define NUM_COMMANDS 6
+#define NUM_COMMANDS 7
 #define NUM_LINES 24
 
 
@@ -169,7 +169,7 @@ int main(void)
   /*forslag til gnuplot flere grafer:  */
   
   char * commandsForGnuplot[] = {"set title \"Noget med CO2\"", "set xlabel \"Tid paa dagen\"",
-  "set ylabel \"CO2-udslip i hvad\"", "set xrange [1:24]", "set yrange [0:300]", 
+  "set ylabel \"CO2-udslip i hvad\"", "set xrange [1:24]", "set yrange [0:300]", "set multiplot",
   "plot 'udslip.temp' using 1:2 w l title 'dag 1', \
      '' using 1:3 w l title 'dag 2', \
      '' using 1:4 w l title 'dag 3', \
@@ -237,3 +237,5 @@ plot 'data.txt' using 1:2 w l title 'y1', \
      '' using 1:4 w l title 'y3', \
      '' using 1:4 w l title 'y4'
      */
+
+/*"set xtics (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24)",*/

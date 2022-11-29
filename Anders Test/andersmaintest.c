@@ -4,7 +4,7 @@
 #define NUM_POINTS 6
 #define NUM_COMMANDS 14
 #define NUM_POINTS_UDSLIP 24
-#define NUM_COMMANDS_UDSLIP 6
+#define NUM_COMMANDS_UDSLIP 7
 #define NUM_LINES_UDSLIP 24
 
 typedef struct // Koekken,stue,bad,værelse,soveværelse.
@@ -455,8 +455,8 @@ void udslip(){
 
   /*forslag til gnuplot flere grafer:  */
   
-  char * commandsForGnuplot[] = {"set title \"Noget med CO2\"", "set xlabel \"Tid paa dagen\"",
-  "set ylabel \"CO2-udslip i hvad\"", "set xrange [1:24]", "set yrange [0:300]", 
+  char * commandsForGnuplot[] = {"set title \"CO_2 udslip pr. time for forskellige dage\"", "set xlabel \"Tid paa dagen\"",
+  "set ylabel \"CO_2 udslip i gram pr kwh.\"", "set xrange [1:24]", "set xtics 1", "set yrange [0:300]", 
   "plot 'udslip.temp' using 1:2 lw 2 w l title 'dag 1', \
      '' using 1:3 lw 2 w l title 'dag 2', \
      '' using 1:4 lw 2 w l title 'dag 3', \
