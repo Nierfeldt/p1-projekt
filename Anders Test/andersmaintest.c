@@ -83,9 +83,10 @@ int main(void){
 
   fclose(file);
 
-   printf("\n %d lines read.\n", linjer);
+  //printf("\n %d lines read.\n", linjer);
 
   // print hver linje data ud i konsolen.
+  /*
   for (int i = 0; i < linjer; i++)
   {
     printf("%lf %lf %lf %lf %lf",
@@ -96,7 +97,7 @@ int main(void){
            data[i].vaerelse);
     printf("\n");
   }
-
+*/
 
   average(data, linjer);
   return 0;
@@ -200,6 +201,45 @@ int average(rum data[], int linjer){
   }
 
   udslip();
+
+  float samlet_udslip[NUM_LINES_UDSLIP] = {0};
+  float bad_udslip[NUM_LINES_UDSLIP] = {0};
+  float koekken_udslip[NUM_LINES_UDSLIP] = {0};
+  float sovevaerelse_udslip[NUM_LINES_UDSLIP] = {0};
+  float stue_udslip[NUM_LINES_UDSLIP] = {0};
+  float vaerelse_udslip[NUM_LINES_UDSLIP] = {0};
+
+  printf("\nDit CO2-udslip:\n");
+  for (int i = 0; i < NUM_LINES_UDSLIP; i++){
+    samlet_udslip[i] += (data[i].bad + data[i].sovevaerelse + data[i].koekken + data[i].stue + data[i].vaerelse) * (emission[i].dag_1);
+    bad_udslip[i] += data[i].bad * emission[i].dag_1;
+    koekken_udslip[i] += data[i].koekken * emission[i].dag_1;
+    sovevaerelse_udslip[i] += data[i].sovevaerelse * emission[i].dag_1;
+    stue_udslip[i] += data[i].stue * emission[i].dag_1;
+    vaerelse_udslip[i] += data[i].vaerelse * emission[i].dag_1;  
+  }
+  
+  float samlet_udslip_t = 0;
+  float bad_udslip_t = 0;
+  float koekken_udslip_t = 0;
+  float sovevaerelse_udslip_t = 0;
+  float stue_udslip_t = 0;
+  float vaerelse_udslip_t = 0;
+
+  for (int i = 0; i < NUM_LINES_UDSLIP; i++){
+    samlet_udslip_t += samlet_udslip[i];
+    bad_udslip_t += bad_udslip[i];
+    koekken_udslip_t += koekken_udslip[i];
+    sovevaerelse_udslip_t += sovevaerelse_udslip[i];
+    stue_udslip_t += stue_udslip[i];
+    vaerelse_udslip_t += vaerelse_udslip[i];
+  }
+
+  printf("Samlet: %.2f g\nbad: %.2f g\nkoekken: %.2f g\nsovevaerelse: %.2f g\nstue: %.2f g\nvaerelse: %.2f g\n\n",
+  samlet_udslip_t, bad_udslip_t, koekken_udslip_t, sovevaerelse_udslip_t, stue_udslip_t, vaerelse_udslip_t);
+
+  
+
 
   return 0;
 
@@ -444,12 +484,12 @@ void udslip(){
   }
 
   printf("\nTidspunktet hvor der bliver udslippet mindst co2 paa dag 1 er kl: %d og udslippet er : %lf\n",location,emission[location].dag_1);
-  printf("\nTidspunktet hvor der bliver udslippet mindst co2 paa dag 2 er kl: %d og udslippet er : %lf\n",location_2,emission[location_2].dag_2);
-  printf("\nTidspunktet hvor der bliver udslippet mindst co2 paa dag 3 er kl: %d og udslippet er : %lf\n",location_3,emission[location_3].dag_3);
-  printf("\nTidspunktet hvor der bliver udslippet mindst co2 paa dag 4 er kl: %d og udslippet er : %lf\n",location_4,emission[location_4].dag_4);
-  printf("\nTidspunktet hvor der bliver udslippet mindst co2 paa dag 5 er kl: %d og udslippet er : %lf\n",location_5,emission[location_5].dag_5);
-  printf("\nTidspunktet hvor der bliver udslippet mindst co2 paa dag 6 er kl: %d og udslippet er : %lf\n",location_6,emission[location_6].dag_6);
-  printf("\nTidspunktet hvor der bliver udslippet mindst co2 paa dag 7 er kl: %d og udslippet er : %lf\n",location_7,emission[location_7].dag_7);
+  printf("Tidspunktet hvor der bliver udslippet mindst co2 paa dag 2 er kl: %d og udslippet er : %lf\n",location_2,emission[location_2].dag_2);
+  printf("Tidspunktet hvor der bliver udslippet mindst co2 paa dag 3 er kl: %d og udslippet er : %lf\n",location_3,emission[location_3].dag_3);
+  printf("Tidspunktet hvor der bliver udslippet mindst co2 paa dag 4 er kl: %d og udslippet er : %lf\n",location_4,emission[location_4].dag_4);
+  printf("Tidspunktet hvor der bliver udslippet mindst co2 paa dag 5 er kl: %d og udslippet er : %lf\n",location_5,emission[location_5].dag_5);
+  printf("Tidspunktet hvor der bliver udslippet mindst co2 paa dag 6 er kl: %d og udslippet er : %lf\n",location_6,emission[location_6].dag_6);
+  printf("Tidspunktet hvor der bliver udslippet mindst co2 paa dag 7 er kl: %d og udslippet er : %lf\n",location_7,emission[location_7].dag_7);
 
 
 
