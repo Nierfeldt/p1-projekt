@@ -456,7 +456,7 @@ void udslip(){
   /*forslag til gnuplot flere grafer:  */
   
   char * commandsForGnuplot[] = {"set title \"CO_2 udslip pr. time for forskellige dage\"", "set xlabel \"Tid paa dagen\"",
-  "set ylabel \"CO_2 udslip i gram pr kwh.\"", "set xrange [1:24]", "set xtics 1", "set yrange [0:300]", 
+  "set ylabel \"CO_2 udslip i gram pr kwh.\"", "set xrange [0:23]", "set xtics 1", "set yrange [0:300]", 
   "plot 'udslip.temp' using 1:2 lw 2 w l title 'dag 1', \
      '' using 1:3 lw 2 w l title 'dag 2', \
      '' using 1:4 lw 2 w l title 'dag 3', \
