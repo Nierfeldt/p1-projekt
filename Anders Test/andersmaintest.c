@@ -17,7 +17,7 @@ typedef struct // Koekken,stue,bad,værelse,soveværelse.
 rum data[200];
 
 int average(rum data[], int linjer);
-void reminder(float samlet_gns, float *valg_bolig_energi);
+int reminder(float samlet_gns);
 
 
 int main(void){
@@ -86,8 +86,6 @@ int average(rum data[], int linjer){
   float sum_stue = 0;
   float sum_vaerelse = 0;
 
-  float gns_husstand_2pers = 9.449315068;
-
   // udregning af sum, for at få gennemsnit.
   for (int i = 0; i < linjer; i++){
     sum_bad = sum_bad + data[i].bad;
@@ -129,6 +127,8 @@ int average(rum data[], int linjer){
   }
   float day1_samlet = (day1_bad + day1_koekken + day1_sovevaerelse + day1_stue + day1_vaerelse);
   
+  float tilsvarende_husstand = reminder(gns_samlet);
+
   char * commandsForGnuplot[] = {
     "set title \"Dit stroemforbrug\"", 
     "set xlabel \"Rum\"", 
@@ -151,7 +151,7 @@ int average(rum data[], int linjer){
   double xvals3[NUM_POINTS] = {1.4 ,2.4, 3.4, 4.4, 5.4, 6.4};
   double yvals[NUM_POINTS] = {day1_samlet, day1_bad, day1_koekken, day1_sovevaerelse, day1_stue, day1_vaerelse};
   double yvals2[NUM_POINTS] = {gns_samlet, gns_bad, gns_koekken, gns_sovevaerelse, gns_stue, gns_vaerelse};
-  double yvals3[NUM_POINTS] = {gns_husstand_2pers, 0, 0, 0, 0, 0};
+  double yvals3[NUM_POINTS] = {tilsvarende_husstand, 0, 0, 0, 0, 0};
   FILE * temp = fopen("data.temp", "w");
   FILE * temp2 = fopen("data2.temp", "w");
   FILE * temp3 = fopen("data3.temp", "w");
@@ -180,7 +180,7 @@ int average(rum data[], int linjer){
 
 }
 
-void reminder(float samlet_gn, float *valg_bolig_energi){
+int reminder(float samlet_gns){
   int bolig_type = 0;
   int bolig_stoerelse = 0;
   int beboer = 0;
@@ -317,7 +317,7 @@ void reminder(float samlet_gn, float *valg_bolig_energi){
     printf("***ADVARSEL***\n");
   }
   
-  
+  return valgt_bolig_energi;
 }
 
 
